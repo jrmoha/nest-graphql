@@ -1,7 +1,8 @@
-// import { Resolver } from '@nestjs/graphql';
-// import { BookService } from './book.service';
+import { Resolver } from '@nestjs/graphql';
+import { BookService } from './book.service';
+import { Book } from './book.schema';
 
-// @Resolver()
-// export class BookResolver {
-//   constructor(private readonly bookService: BookService) {}
-// }
+@Resolver(() => Book)
+export class BookResolver {
+  constructor(private readonly bookService: BookService) {}
+}

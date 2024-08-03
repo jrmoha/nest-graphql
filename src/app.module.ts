@@ -17,6 +17,10 @@ import { ApolloDriver } from '@nestjs/apollo';
     ConfigModule.forRoot({
       validate,
     }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+    }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -24,13 +28,9 @@ import { ApolloDriver } from '@nestjs/apollo';
       }),
       inject: [ConfigService],
     }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: true,
-    }),
     AuthorModule,
     BookModule,
-    CommandRunnerModule,
+    // CommandRunnerModule,
   ],
   providers: [
     DataLoaderCommand,
