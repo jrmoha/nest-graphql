@@ -21,13 +21,17 @@
     "load-data": "nest build && node dist/main.js load-all"
   },
   "dependencies": {
+    "@apollo/server": "^4.10.5",
+    "@nestjs/apollo": "^12.2.0",
     "@nestjs/common": "^10.3.10",
     "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.3.10",
+    "@nestjs/graphql": "^12.2.0",
     "@nestjs/mongoose": "^10.0.10",
     "@nestjs/platform-express": "^10.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "graphql": "^16.9.0",
     "mongoose": "^8.5.2",
     "nest-commander": "^3.14.0",
     "reflect-metadata": "^0.2.0",

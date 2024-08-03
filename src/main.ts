@@ -8,6 +8,6 @@ async function bootstrap() {
   const configService = app.get<ConfigService>(ConfigService);
   const PORT = configService.get<number>('PORT');
   await app.listen(PORT);
-  await CommandFactory.run(AppModule);
+  // await CommandFactory.run(AppModule);
 }
 bootstrap();

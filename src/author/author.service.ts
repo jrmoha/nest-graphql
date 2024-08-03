@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Author } from './author.schema';
+import { Author, FindAuthorInput } from './author.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -11,5 +11,12 @@ export class AuthorService {
 
   async create(author: Author) {
     return this.authorModel.create(author);
+  }
+  async findMany() {
+    return this.authorModel.find();
+  }
+
+  async findAuthor({ id }: FindAuthorInput) {
+    return this.authorModel.findById(id);
   }
 }
