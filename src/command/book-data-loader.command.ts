@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import { BookService } from 'src/book/book.service';
 import * as books from '../data/books';
 import { Command, CommandRunner } from 'nest-commander';
@@ -10,6 +11,7 @@ export class BookDataLoaderCommand extends CommandRunner {
   async run(): Promise<void> {
     for (const book of books.default) {
       await this.bookService.create({
+       
         title: book.title,
         isbn: book.isbn,
         language_code: book.language_code,

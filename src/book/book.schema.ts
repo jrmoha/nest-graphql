@@ -1,4 +1,4 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, ID, InputType, ObjectType, PartialType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import { Author } from 'src/author/author.schema';
@@ -8,6 +8,9 @@ export type BookDocument = HydratedDocument<Book>;
 @Schema()
 @ObjectType()
 export class Book {
+  @Field(() => ID)
+  _id?: string;
+
   @Prop({ required: true })
   @Field()
   title: string;
@@ -36,3 +39,5 @@ export class FindBookInput {
   @Field()
   _id: string;
 }
+
+export class UpdateBookInput extends PartialType(Book, InputType) {}

@@ -1,7 +1,7 @@
 import { Field, ID, InputType, ObjectType, PartialType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument, Types } from 'mongoose';
-import { Book, BookDocument } from 'src/book/book.schema';
+import mongoose, { HydratedDocument } from 'mongoose';
+import { Book } from 'src/book/book.schema';
 
 export type AuthorDocument = HydratedDocument<Author>;
 
@@ -31,7 +31,7 @@ export class FindAuthorInput {
 
 @InputType()
 export class CreateAuthorInput {
-  @Field({nullable:true})
+  @Field({ nullable: true })
   _id: string;
 
   @Field()

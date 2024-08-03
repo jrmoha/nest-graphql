@@ -49,7 +49,7 @@ export class AuthorResolver {
     return this.authorService.update(input);
   }
 
-  @Mutation(() => Author)
+  @Mutation(()=>Boolean,{nullable:true})
   async deleteAuthor(@Args('input') input: DeleteAuthorInput) {
     await this.authorService.delete(input);
   }

@@ -15,6 +15,6 @@ export class BookService {
   }
 
   async findByAuthor(author: Author) {
-    return this.bookModel.find({ author: author._id });
+    return this.bookModel.find({ author: author._id }).lean();
   }
 }
