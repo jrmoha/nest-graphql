@@ -28,8 +28,8 @@ export class Book {
   language_code: string;
 
   @Prop({ type: Types.ObjectId, ref: 'Author' })
-  @Field(() => Author)
-  author: Author | string;
+  @Field(() => String)
+  author?: string;
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);
@@ -40,4 +40,5 @@ export class FindBookInput {
   _id: string;
 }
 
+@InputType()
 export class UpdateBookInput extends PartialType(Book, InputType) {}
