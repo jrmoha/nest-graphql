@@ -24,10 +24,7 @@ export class Author {
 export const AuthorSchema = SchemaFactory.createForClass(Author);
 
 @InputType()
-export class FindAuthorInput {
-  @Field()
-  id: string;
-}
+export class FindAuthorInput extends PartialType(Author, InputType) {}
 
 @InputType()
 export class CreateAuthorInput {
