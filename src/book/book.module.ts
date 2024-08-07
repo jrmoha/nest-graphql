@@ -11,7 +11,7 @@ import { Author, AuthorSchema } from 'src/author/author.schema';
     MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }]),
     MongooseModule.forFeature([{ name: Author.name, schema: AuthorSchema }]),
   ],
-  providers: [BookService, BookResolver, AuthorService],
+  providers: [BookResolver, BookService, AuthorService],
   exports: [BookService],
 })
 export class BookModule {}

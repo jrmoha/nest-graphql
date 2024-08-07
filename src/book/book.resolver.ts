@@ -7,7 +7,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { BookService } from './book.service';
-import { Book, UpdateBookInput } from './book.schema';
+import { Book, CreateBookInput, UpdateBookInput } from './book.schema';
 import { AuthorService } from 'src/author/author.service';
 import { Author } from 'src/author/author.schema';
 
@@ -25,7 +25,7 @@ export class BookResolver {
 
   @ResolveField(() => Author)
   async author(@Parent() parent: Book) {
-    const author_id = parent.author as string;
+    const author_id = parent.author;
 
     return this.authorService.findAuthor({
       _id: author_id,
@@ -36,4 +36,12 @@ export class BookResolver {
   async updateBook(@Args('input') input: UpdateBookInput) {
     return this.bookService.update(input);
   }
+
+  @Mutation(() => Book)
+  async createBook(@Args('input') input: CreateBookInput) {
+    return this.bookService.create(input);
+  }
+
+  @Mutation(() => Book)
+  async deleteBook() {}
 }

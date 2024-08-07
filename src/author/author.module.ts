@@ -13,7 +13,7 @@ import { Book, BookSchema } from 'src/book/book.schema';
       { name: Book.name, schema: BookSchema },
     ]),
   ],
-  providers: [AuthorService, AuthorResolver, BookService],
+  providers: [AuthorResolver, AuthorService, BookService],
   exports: [AuthorService],
 })
 export class AuthorModule {}

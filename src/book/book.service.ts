@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Book, UpdateBookInput } from './book.schema';
+import { Book, CreateBookInput, UpdateBookInput } from './book.schema';
 import { Model } from 'mongoose';
 import { Author } from 'src/author/author.schema';
 
@@ -11,8 +11,13 @@ export class BookService {
     @InjectModel(Author.name) private readonly authorModel: Model<Author>,
   ) {}
 
-  async create(book: Book) {
-    return this.bookModel.create(book);
+  async create(input: CreateBookInput) {
+    const book = await this.bookModel.create(input);
+    await this.authorModel.updateOne(
+      { _id: input.author },
+      { $addToSet: { books: book._id } },
+    );
+    return book;
   }
 
   async findByAuthor(author: Author) {

@@ -4,6 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Model, Types } from 'mongoose';
 import {
   AddBookToAuthorInput,
   Author,
@@ -12,7 +13,6 @@ import {
   FindAuthorInput,
   UpdateAuthorInput,
 } from './author.schema';
-import { Model, Types } from 'mongoose';
 import { Book } from 'src/book/book.schema';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class AuthorService {
 
   async findAuthor({ _id }: FindAuthorInput) {
     if (!_id) return null;
-    
+
     return this.authorModel.findOne({ _id });
   }
   async update({ _id, name }: UpdateAuthorInput) {

@@ -1,9 +1,10 @@
 import { Field, ID, InputType, ObjectType, PartialType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
-import { Book } from 'src/book/book.schema';
+import * as mongoose from 'mongoose';
+import { Document } from 'mongoose';
+import { Book } from '../book/book.schema';
 
-export type AuthorDocument = HydratedDocument<Author>;
+export type AuthorDocument = Author & Document;
 
 @Schema()
 @ObjectType()
@@ -16,15 +17,17 @@ export class Author {
   @Field()
   name: string;
 
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }] })
-  // @Field((type) => [Book],{nullable:true,defaultValue:[]})
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'Book' } })
+  @Field(() => [Book])
   books: Book[];
 }
 
 export const AuthorSchema = SchemaFactory.createForClass(Author);
-
 @InputType()
-export class FindAuthorInput extends PartialType(Author, InputType) {}
+export class FindAuthorInput {
+  @Field(() => ID)
+  _id: string;
+}
 
 @InputType()
 export class CreateAuthorInput {
@@ -36,7 +39,13 @@ export class CreateAuthorInput {
 }
 
 @InputType()
-export class UpdateAuthorInput extends PartialType(Author, InputType) {}
+export class UpdateAuthorInput {
+  @Field(() => ID)
+  _id: string;
+
+  @Field()
+  name: string;
+}
 @InputType()
 export class AddBookToAuthorInput {
   @Field()

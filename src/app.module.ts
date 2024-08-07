@@ -5,10 +5,10 @@ import { validate } from './env.validator';
 import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuthorDataLoaderCommand } from './command/author-data-loader.command';
-import { BookDataLoaderCommand } from './command/book-data-loader.command';
+// import { AuthorDataLoaderCommand } from './command/author-data-loader.command';
+// import { BookDataLoaderCommand } from './command/book-data-loader.command';
 import { CommandRunnerModule } from 'nest-commander';
-import { DataLoaderCommand } from './command/load-all.command';
+// import { DataLoaderCommand } from './command/load-all.command';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 
@@ -19,7 +19,7 @@ import { ApolloDriver } from '@nestjs/apollo';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: 'schema.gql',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -33,9 +33,9 @@ import { ApolloDriver } from '@nestjs/apollo';
     // CommandRunnerModule,
   ],
   providers: [
-    DataLoaderCommand,
-    AuthorDataLoaderCommand,
-    BookDataLoaderCommand,
+    // DataLoaderCommand,
+    // AuthorDataLoaderCommand,
+    // BookDataLoaderCommand,
   ],
 })
 export class AppModule {}
