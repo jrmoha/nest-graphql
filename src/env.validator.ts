@@ -24,6 +24,12 @@ class EnvironmentVariables {
 
   @IsString()
   DATABASE_URI: string;
+
+  @IsString()
+  JWT_PRIVATE_KEY: string;
+
+  @IsString()
+  JWT_PUBLIC_KEY: string;
 }
 
 export function validate(config: Record<string, unknown>) {

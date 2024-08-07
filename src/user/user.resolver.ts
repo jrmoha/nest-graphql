@@ -1,6 +1,11 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { UserService } from './user.service';
-import { ConfirmUserInput, CreateUserInput, LoginInput, User } from './user.schema';
+import {
+  ConfirmUserInput,
+  CreateUserInput,
+  LoginInput,
+  User,
+} from './user.schema';
 
 @Resolver()
 export class UserResolver {
@@ -16,9 +21,9 @@ export class UserResolver {
     return this.userService.confirm(input);
   }
 
-  @Mutation(()=>User)
-  async login(@Args('input') input: LoginInput){
-
+  @Mutation(() => String)
+  async login(@Args('input') input: LoginInput) {
+    return this.userService.login(input);
   }
 }
 //register

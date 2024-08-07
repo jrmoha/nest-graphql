@@ -43,7 +43,7 @@ type Mutation {
   deleteBook(input: DeleteBookInput!): Boolean!
   signup(input: CreateUserInput!): User!
   confirm_user(input: ConfirmUserInput!): User!
-  login(input: LoginInput!): User!
+  login(input: LoginInput!): String!
 }
 
 input CreateAuthorInput {
