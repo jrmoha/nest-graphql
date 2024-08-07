@@ -1,5 +1,5 @@
 import { Command, CommandRunner } from 'nest-commander';
-import { AuthorService } from 'src/author/author.service';
+import { AuthorService } from '../author/author.service';
 import * as authors from '../data/authors';
 
 @Command({ name: 'load-authors', description: 'Load Authors Data' })

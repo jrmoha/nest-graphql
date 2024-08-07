@@ -1,5 +1,4 @@
-import { Types } from 'mongoose';
-import { BookService } from 'src/book/book.service';
+import { BookService } from '../book/book.service';
 import * as books from '../data/books';
 import { Command, CommandRunner } from 'nest-commander';
 

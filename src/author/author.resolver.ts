@@ -1,4 +1,3 @@
-import { BookService } from 'src/book/book.service';
 import {
   Args,
   Mutation,
@@ -16,7 +15,8 @@ import {
   FindAuthorInput,
   UpdateAuthorInput,
 } from './author.schema';
-import { Book } from 'src/book/book.schema';
+import { BookService } from '../book/book.service';
+import { Book } from '../book/book.schema';
 
 @Resolver(() => Author)
 export class AuthorResolver {

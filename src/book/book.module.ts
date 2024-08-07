@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { BookService } from './book.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BookService } from './book.service';
 import { Book, BookSchema } from './book.schema';
 import { BookResolver } from './book.resolver';
-import { AuthorService } from 'src/author/author.service';
-import { Author, AuthorSchema } from 'src/author/author.schema';
+import { AuthorService } from '../author/author.service';
+import { Author, AuthorSchema } from '../author/author.schema';
 
 @Module({
   imports: [

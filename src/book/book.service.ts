@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import {
   Book,
   CreateBookInput,
   DeleteBookInput,
   UpdateBookInput,
 } from './book.schema';
-import { Model } from 'mongoose';
-import { Author } from 'src/author/author.schema';
+import { Author } from '../author/author.schema';
 
 @Injectable()
 export class BookService {

@@ -6,6 +6,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { BadRequestException } from '@nestjs/common';
 import { BookService } from './book.service';
 import {
   Book,
@@ -15,7 +16,6 @@ import {
 } from './book.schema';
 import { AuthorService } from 'src/author/author.service';
 import { Author } from 'src/author/author.schema';
-import { BadRequestException } from '@nestjs/common';
 
 @Resolver(() => Book)
 export class BookResolver {
