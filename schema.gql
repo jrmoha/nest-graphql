@@ -34,7 +34,7 @@ type Mutation {
   addBookToAuthor(input: AddBookToAuthorInput!): Author!
   updateBook(input: UpdateBookInput!): Book!
   createBook(input: CreateBookInput!): Book!
-  deleteBook: Book!
+  deleteBook(input: DeleteBookInput!): Boolean!
 }
 
 input CreateAuthorInput {
@@ -71,4 +71,8 @@ input CreateBookInput {
   isbn: String!
   language_code: String!
   author: String!
+}
+
+input DeleteBookInput {
+  _id: String!
 }

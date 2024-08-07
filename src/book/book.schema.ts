@@ -79,3 +79,9 @@ export class CreateBookInput {
   @Field()
   author: string;
 }
+
+@InputType()
+export class DeleteBookInput {
+  @Field()
+  _id: string;
+}

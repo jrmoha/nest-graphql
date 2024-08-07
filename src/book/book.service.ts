@@ -1,6 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Book, CreateBookInput, UpdateBookInput } from './book.schema';
+import {
+  Book,
+  CreateBookInput,
+  DeleteBookInput,
+  UpdateBookInput,
+} from './book.schema';
 import { Model } from 'mongoose';
 import { Author } from 'src/author/author.schema';
 
@@ -53,5 +58,9 @@ export class BookService {
     }
 
     return book;
+  }
+
+  async deleteBook({ _id }: DeleteBookInput) {
+    return this.bookModel.deleteOne({ _id });
   }
 }

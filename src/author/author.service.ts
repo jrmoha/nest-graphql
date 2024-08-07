@@ -35,7 +35,7 @@ export class AuthorService {
   async findAuthor({ _id }: FindAuthorInput) {
     if (!_id) return null;
 
-    return this.authorModel.findOne({ _id });
+    return this.authorModel.findOne({ _id: _id.toString() });
   }
   async update({ _id, name }: UpdateAuthorInput) {
     const author = await this.authorModel.findById(_id);

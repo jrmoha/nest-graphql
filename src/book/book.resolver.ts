@@ -7,9 +7,15 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { BookService } from './book.service';
-import { Book, CreateBookInput, UpdateBookInput } from './book.schema';
+import {
+  Book,
+  CreateBookInput,
+  DeleteBookInput,
+  UpdateBookInput,
+} from './book.schema';
 import { AuthorService } from 'src/author/author.service';
 import { Author } from 'src/author/author.schema';
+import { BadRequestException } from '@nestjs/common';
 
 @Resolver(() => Book)
 export class BookResolver {
@@ -23,10 +29,13 @@ export class BookResolver {
     return this.bookService.findMany();
   }
 
-  @ResolveField(() => Author)
+  @ResolveField(() => Author, { nullable: true })
   async author(@Parent() parent: Book) {
     const author_id = parent.author;
-
+    if (!author_id)
+      throw new BadRequestException(
+        `Author with #id ${author_id} not found for book ${parent._id}`,
+      );
     return this.authorService.findAuthor({
       _id: author_id,
     });
@@ -42,6 +51,9 @@ export class BookResolver {
     return this.bookService.create(input);
   }
 
-  @Mutation(() => Book)
-  async deleteBook() {}
+  @Mutation(() => Boolean)
+  async deleteBook(@Args('input') input: DeleteBookInput) {
+    await this.bookService.deleteBook(input);
+    return true;
+  }
 }
