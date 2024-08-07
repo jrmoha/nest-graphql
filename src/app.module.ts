@@ -11,6 +11,7 @@ import { CommandRunnerModule } from 'nest-commander';
 // import { DataLoaderCommand } from './command/load-all.command';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ApolloDriver } from '@nestjs/apollo';
     }),
     AuthorModule,
     BookModule,
+    UserModule,
     // CommandRunnerModule,
   ],
   providers: [
