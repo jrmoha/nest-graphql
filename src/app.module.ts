@@ -1,5 +1,5 @@
 import { ApolloDriverConfig } from './../node_modules/@nestjs/apollo/dist/interfaces/apollo-driver-config.interface.d';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { validate } from './env.validator';
 import { AuthorModule } from './author/author.module';

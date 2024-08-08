@@ -27,6 +27,7 @@ type Query {
   authors: [Author!]!
   author(input: FindAuthorInput!): Author
   books: [Book!]!
+  profile: User!
 }
 
 input FindAuthorInput {

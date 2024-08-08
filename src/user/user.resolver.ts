@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import {
   ConfirmUserInput,
@@ -6,6 +6,9 @@ import {
   LoginInput,
   User,
 } from './user.schema';
+import { Request } from 'express';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Resolver()
 export class UserResolver {
@@ -25,11 +28,10 @@ export class UserResolver {
   async login(@Args('input') input: LoginInput) {
     return this.userService.login(input);
   }
+  @Query(() => User)
+  @UseGuards(AuthGuard)
+  async profile(@Context('req') req: Request) {
+    const user = req["user"];
+    return user;
+  }
 }
-//register
-
-//confirmUser
-
-//login
-
-// me

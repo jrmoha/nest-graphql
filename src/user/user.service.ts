@@ -61,4 +61,12 @@ export class UserService {
     };
     return this.jwtService.sign(payload);
   }
+  // async verifyToken(token: string | undefined) {
+  //   if (!token) throw new UnauthorizedException();
+  //   try {
+  //     return this.jwtService.verifyAsync(token);
+  //   } catch {
+  //     throw new UnauthorizedException();
+  //   }
+  // }
 }
