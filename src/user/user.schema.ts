@@ -81,3 +81,8 @@ export class LoginInput {
   @Field()
   password: string;
 }
+@InputType()
+export class ChangePasswordInput {
+  @Field()
+  new_password: string;
+}

@@ -7,10 +7,12 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import {
+  ChangePasswordInput,
   ConfirmUserInput,
   CreateUserInput,
   LoginInput,
   User,
+  UserDocument,
 } from './user.schema';
 import { Model } from 'mongoose';
 import { nanoid } from 'nanoid';
@@ -61,12 +63,17 @@ export class UserService {
     };
     return this.jwtService.sign(payload);
   }
-  // async verifyToken(token: string | undefined) {
-  //   if (!token) throw new UnauthorizedException();
-  //   try {
-  //     return this.jwtService.verifyAsync(token);
-  //   } catch {
-  //     throw new UnauthorizedException();
-  //   }
-  // }
+  async change_password(user: User, { new_password }: ChangePasswordInput) {
+    const user_ = await this.userModel.findById(user._id);
+    if (!user_) throw new NotFoundException();
+    user_.password = new_password;
+    await user_.save();
+
+    const payload = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    };
+    return this.jwtService.sign(payload);
+  }
 }

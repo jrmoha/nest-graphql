@@ -1,6 +1,7 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import {
+  ChangePasswordInput,
   ConfirmUserInput,
   CreateUserInput,
   LoginInput,
@@ -31,7 +32,15 @@ export class UserResolver {
   @Query(() => User)
   @UseGuards(AuthGuard)
   async profile(@Context('req') req: Request) {
-    const user = req["user"];
+    const user = req['user'];
     return user;
+  }
+  @Mutation(() => String)
+  @UseGuards(AuthGuard)
+  async change_password(
+    @Context('req') req: Request,
+    @Args('input') input: ChangePasswordInput,
+  ) {
+    return this.userService.change_password(req['user'], input);
   }
 }
